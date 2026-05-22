@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Identity Based Health System - Secure Healthcare Management">
+    <meta name="author" content="">
+
+    <title>Identity Based Health System - Secure Healthcare</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #00d2ff;
+            --accent-color: #3a7bd5;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #0d6efd 0%, #00d2ff 100%);
+            --gradient-dark: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            --text-dark: #2c3e50;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --shadow-sm: 0 2px 15px rgba(0,0,0,0.08);
+            --shadow-md: 0 5px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 10px 50px rgba(0,0,0,0.15);
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: #ffffff;
+        }
+
+        /* Premium Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-sm);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo_img img {
+            height: 50px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled .logo_img img {
+            height: 45px;
+        }
+
+        .nav-item {
+            margin: 0 5px;
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            padding: 10px 20px !important;
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: var(--gradient-secondary);
+            color: #ffffff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(13, 110, 253, 0.3);
+        }
+
+        .nav-link i {
+            margin-right: 8px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: var(--gradient-secondary);
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(13, 110, 253, 0); }
+        }
+
+        .word {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .btn-custom {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(13, 110, 253, 0.3);
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(13, 110, 253, 0.4);
+            color: white;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #e9ecef;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .feature-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 2.5rem;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(360deg);
+            border-radius: 50%;
+        }
+
+        .feature-card h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            height: 100%;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
+            border: 1px solid #e9ecef;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 4px solid var(--primary-color);
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-rating {
+            color: #ffc107;
+            margin: 15px 0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--gradient-dark);
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer-area {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            padding: 80px 0 40px;
+        }
+
+        .footer-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        .footer-content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-content-list li i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+
+        .copy-right-area {
+            background: #0f0f23;
+            color: #e0e0e0;
+            padding: 30px 0;
+        }
+
+        .newsletter-btn {
+            background: var(--gradient-secondary);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+
+        .newsletter-btn:hover {
+            transform: translateX(5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .word {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .feature-card, .step-card, .testimonial-card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <div class="logo_img">
+                <a href="index.html"><img src="img/bg_logo1.png" alt="IBHS Logo"></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="hospitallogin.php">
+                            <i class="fa-solid fa-hospital"></i> Hospital
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="personlogin.php">
+                            <i class="fa-solid fa-user"></i> Person
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <div class="hero-badge">
+                <i class="fa-solid fa-shield-halved"></i> Secure Healthcare Platform
+            </div>
+            <h1 class="word">Welcome to the Identity Based Health System</h1>
+            <p class="hero-subtitle">Revolutionizing healthcare with secure, accessible, and reliable digital identity management for patients and providers.</p>
+            <div class="hero-buttons">
+                <a href="personlogin.php" class="btn btn-custom mr-3">
+                    <i class="fa-solid fa-right-to-bracket"></i> Get Started
+                </a>
+                <a href="#features" class="btn btn-outline-primary btn-custom" style="background: white; color: var(--primary-color); border: 2px solid var(--primary-color);">
+                    <i class="fa-solid fa-circle-info"></i> Learn More
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" data-aos="fade-up">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="10000">10,000+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="500">500+</div>
+                        <div class="stat-label">Partner Hospitals</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="100">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="50">50+</div>
+                        <div class="stat-label">Cities Served</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Why Choose Our Platform?</h2>
+                <p>Discover the powerful features that make our healthcare system secure and efficient</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <h4>Advanced Security</h4>
+                        <p>Military-grade encryption protects your sensitive medical data with blockchain-verified identity management.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h4>Universal Access</h4>
+                        <p>Access your complete medical history anytime, anywhere with our cloud-based platform.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+                        <h4>Emergency Ready</h4>
+                        <p>Instant emergency access for healthcare providers during critical situations, saving precious time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>How It Works</h2>
+                <p>Getting started with our platform is simple and straightforward</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <h4>Register Account</h4>
+                        <p>Create your secure account as a patient, doctor, or hospital administrator in minutes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <i class="fa-solid fa-cloud-upload-alt"></i>
+                        </div>
+                        <h4>Upload Documents</h4>
+                        <p>Securely upload your medical documents, prescriptions, and reports to the platform.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-left" data-aos-delay="300">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                            <i class="fa-solid fa-check-circle"></i>
+                        </div>
+                        <h4>Smart Verification</h4>
+                        <p>AI-powered verification ensures authenticity of all documents before they're stored.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>What Our Users Say</h2>
+                <p>Hear from healthcare professionals and patients who trust our platform</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="img/patient1.png" alt="Patient">
+                        </div>
+                        <h4>Ibrahim Khan</h4>
+                        <p class="text-muted">Patient</p>
+                        <div class="testimonial-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"This system has transformed how I manage my health records. It's incredibly fast and secure!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="img/doctor1.jpg" alt="Doctor">
+                        </div>
+                        <h4>Dr. Saiful Islam Ratan</h4>
+                        <p class="text-muted">Cardiologist</p>
+                        <div class="testimonial-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"As a doctor, this platform helps me quickly verify patient records and provide better care."</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="img/cityhospital.jfif" alt="Hospital">
+                        </div>
+                        <h4>City Hospital</h4>
+                        <p class="text-muted">Healthcare Provider</p>
+                        <div class="testimonial-rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p>"The emergency access feature has been a lifesaver for our patients in critical conditions."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <h4 class="footer-title">CONTACT US</h4>
+                        <ul class="footer-content-list">
+                            <li><i class="fa fa-map-marker"></i> Aftabnagar, Dhaka, Bangladesh</li>
+                            <li><i class="fa-solid fa-phone"></i> <a href="tel:01762210398" style="color: #e0e0e0;">01762210398</a></li>
+                            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info.ibhs@gmail.com" style="color: #e0e0e0;">info.ibhs@gmail.com</a></li>
+                            <li><i class="fa-solid fa-clock"></i> Sat - Fri : 8:00 AM - 8:00 PM</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <h4 class="footer-title">QUICK LINKS</h4>
+                        <ul class="footer-content-list">
+                            <li><a href="#" style="color: #e0e0e0;">Hospitals</a></li>
+                            <li><a href="#" style="color: #e0e0e0;">Doctors</a></li>
+                            <li><a href="#" style="color: #e0e0e0;">Patients</a></li>
+                            <li><a href="#" style="color: #e0e0e0;">FAQs</a></li>
+                            <li><a href="#" style="color: #e0e0e0;">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <h4 class="footer-title">RECENT NEWS</h4>
+                        <div class="mb-3">
+                            <a href="#" style="color: #e0e0e0;">City Hospital Updates</a>
+                            <p class="text-muted small"><i class="fa-solid fa-clock"></i> 12 Jan 2025</p>
+                        </div>
+                        <div>
+                            <a href="#" style="color: #e0e0e0;">Healthcare Alert</a>
+                            <p class="text-muted small"><i class="fa-solid fa-clock"></i> 20 Feb 2025</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <h4 class="footer-title">NEWSLETTER</h4>
+                        <p class="small">Subscribe for weekly health tips and platform updates.</p>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Email address" style="border-radius: 50px 0 0 50px;">
+                            <div class="input-group-append">
+                                <button class="newsletter-btn" type="submit">
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copy-right-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center text-md-left mb-3 mb-md-0">
+                    <p class="mb-0 small">© 2025 Identity Based Health System. All rights reserved.</p>
+                </div>
+                <div class="col-md-4 text-center mb-3 mb-md-0">
+                    <a href="#"><img src="img/logofix.png" alt="IBHS" height="40"></a>
+                </div>
+                <div class="col-md-4 text-center text-md-right">
+                    <a href="#" class="text-white mx-2"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="text-white mx-2"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="text-white mx-2"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Navbar scroll effect
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 50) {
+                $('#mainNav').addClass('scrolled');
+            } else {
+                $('#mainNav').removeClass('scrolled');
+            }
+        });
+
+        // Word flick animation
+        var words = [
+            'Welcome to the Identity Based Health System',
+            'Your Health, Our Priority',
+            'Secure Digital Healthcare',
+            'Trusted by Thousands'
+        ];
+        var part, i = 0, offset = 0, forwards = true, skip_count = 0, skip_delay = 15, speed = 70;
+        
+        setInterval(function() {
+            if (forwards) {
+                if (offset >= words[i].length) {
+                    ++skip_count;
+                    if (skip_count == skip_delay) {
+                        forwards = false;
+                        skip_count = 0;
+                    }
+                }
+            } else {
+                if (offset == 0) {
+                    forwards = true;
+                    i = (i + 1) % words.length;
+                    offset = 0;
+                }
+            }
+            part = words[i].substr(0, offset);
+            if (skip_count == 0) {
+                if (forwards) offset++; else offset--;
+            }
+            $('.word').text(part);
+        }, speed);
+
+        // Smooth scrolling for anchor links
+        $('a[href^="#"]').on('click', function(event) {
+            var target = $($(this).attr('href'));
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 70
+                }, 800);
+            }
+        });
+    </script>
+</body>
+</html>
