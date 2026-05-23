@@ -1,3 +1,27 @@
+<?php include('dbconn.php'); ?>
+
+<?php
+  $message = "";
+  session_start();
+  if(isset($_POST['btn'])){
+    $hosid = mysqli_real_escape_string($conn,$_POST['hosid']);
+    $password = mysqli_real_escape_string($conn,$_POST['password']);
+    
+    $query = mysqli_query($conn,"SELECT * FROM hospital WHERE hospital_id ='$hosid' AND PASSWORD ='$password'");
+    
+    if ($query && $query->num_rows > 0){
+      $row = mysqli_fetch_array($query);
+      $user_id = $row['hospital_id'];
+      $_SESSION['id']=$user_id;
+      $_SESSION['radio'] = "Hospital";
+      header("Location:hospitalhome.php");
+      exit();
+    }else{ 
+      $message = "Invalid Hospital ID or Password!";
+    }	
+  }    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,32 +46,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <title>Hospital Login | Identity Based Healthcare</title>
-
-    <?php include('dbconn.php'); ?>
-
-    <?php
-      $message = "";
-      session_start();
-      if(isset($_POST['btn'])){
-        $hosid = mysqli_real_escape_string($conn,$_POST['hosid']);
-        $password = mysqli_real_escape_string($conn,$_POST['password']);
-        
-       
-        $query = mysqli_query($conn,"SELECT * FROM hospital WHERE hospital_id ='$hosid' AND PASSWORD ='$password'");
-        $row = mysqli_fetch_array($query);
-        $user_id = $row['hospital_id'];
-        if ($query->num_rows > 0){
-      
-          $_SESSION['id']=$user_id;
-          $_SESSION['radio'] = "Hospital";
-          header("Location:hospitalhome.php");
-          
-        }else{ 
-          $message = "login failed";
-        }	
-
-      }    
-    ?>
 
     <style>
         * {
@@ -317,7 +315,6 @@
             color: white;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 10px;
             position: relative;
             overflow: hidden;
         }
@@ -351,6 +348,53 @@
 
         .btn-login i {
             margin-right: 8px;
+        }
+
+        /* Registration Button */
+        .btn-register {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px;
+            margin-top: 15px;
+            background: #fff;
+            color: #009B46;
+            border: 2px solid #009B46;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-register:hover {
+            background: #009B46;
+            color: #fff;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 155, 70, 0.2);
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            padding: 0 15px;
+            color: #999;
+            font-size: 13px;
+            font-weight: 500;
         }
 
         /* Alert Message */
@@ -428,12 +472,6 @@
             .hospital-icon i {
                 font-size: 32px;
             }
-        }
-
-        /* Loading State */
-        .btn-login.loading {
-            pointer-events: none;
-            opacity: 0.7;
         }
 
         /* Remove number input arrows */
@@ -541,22 +579,30 @@
                             <button type="submit" name="btn" class="btn-login">
                                 <i class="fas fa-sign-in-alt"></i> Sign In
                             </button>
-                            
-                            <div class="security-badge">
-                                <div class="security-item">
-                                    <i class="fas fa-shield-alt"></i>
-                                    <span>SSL Secure</span>
-                                </div>
-                                <div class="security-item">
-                                    <i class="fas fa-lock"></i>
-                                    <span>Encrypted</span>
-                                </div>
-                                <div class="security-item">
-                                    <i class="fas fa-clock"></i>
-                                    <span>24/7 Support</span>
-                                </div>
-                            </div>
                         </form>
+                        
+                        <!-- REGISTRATION BUTTON -->
+                        <div class="divider">
+                            <span>New Hospital?</span>
+                        </div>
+                        <a href="hospitalregistration.php" class="btn-register">
+                            <i class="fas fa-hospital-user mr-2"></i> Register Your Hospital
+                        </a>
+                        
+                        <div class="security-badge">
+                            <div class="security-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>SSL Secure</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Encrypted</span>
+                            </div>
+                            <div class="security-item">
+                                <i class="fas fa-clock"></i>
+                                <span>24/7 Support</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

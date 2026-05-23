@@ -34,6 +34,7 @@
             --bg-light: #f5f6fa;
             --text-dark: #2c3e50;
             --text-light: #7f8c8d;
+            --verified-blue: #1da1f2;
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
             --shadow-md: 0 5px 20px rgba(0,0,0,0.08);
             --shadow-lg: 0 15px 40px rgba(0,0,0,0.10);
@@ -60,9 +61,7 @@
             height: 72px;
         }
 
-        .logo_img img {
-            height: 44px;
-        }
+        .logo_img img { height: 44px; }
 
         .navbar-nav .nav-link {
             color: #555 !important;
@@ -75,20 +74,9 @@
             white-space: nowrap;
         }
 
-        .navbar-nav .nav-link i {
-            margin-right: 5px;
-            font-size: 13px;
-        }
-
-        .navbar-nav .nav-link:hover {
-            background: #f0fdf4;
-            color: var(--primary) !important;
-        }
-
-        .navbar-nav .nav-link.active {
-            background: var(--primary);
-            color: #fff !important;
-        }
+        .navbar-nav .nav-link i { margin-right: 5px; font-size: 13px; }
+        .navbar-nav .nav-link:hover { background: #f0fdf4; color: var(--primary) !important; }
+        .navbar-nav .nav-link.active { background: var(--primary); color: #fff !important; }
 
         .nav-user-badge {
             background: var(--primary-light);
@@ -122,10 +110,7 @@
             font-size: 13px !important;
         }
 
-        .btn-logout-nav:hover {
-            background: var(--danger) !important;
-            color: #fff !important;
-        }
+        .btn-logout-nav:hover { background: var(--danger) !important; color: #fff !important; }
 
         /* ============ PAGE HEADER ============ */
         .page-header {
@@ -177,17 +162,8 @@
             flex-shrink: 0;
         }
 
-        .header-title h4 {
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.4rem;
-            margin: 0;
-        }
-
-        .header-title span {
-            color: rgba(255,255,255,0.8);
-            font-size: 0.82rem;
-        }
+        .header-title h4 { color: #fff; font-weight: 700; font-size: 1.4rem; margin: 0; }
+        .header-title span { color: rgba(255,255,255,0.8); font-size: 0.82rem; }
 
         .header-badge {
             background: rgba(255,255,255,0.15);
@@ -198,16 +174,8 @@
             text-align: center;
         }
 
-        .header-badge .count {
-            font-size: 1.8rem;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .header-badge .label {
-            font-size: 0.72rem;
-            opacity: 0.85;
-        }
+        .header-badge .count { font-size: 1.8rem; font-weight: 700; line-height: 1; }
+        .header-badge .label { font-size: 0.72rem; opacity: 0.85; }
 
         /* ============ DOCTOR CARDS ============ */
         .doctor-grid {
@@ -248,9 +216,7 @@
             border-color: #e0e0e0;
         }
 
-        .doctor-card:hover::before {
-            opacity: 1;
-        }
+        .doctor-card:hover::before { opacity: 1; }
 
         .doctor-avatar {
             width: 75px;
@@ -267,16 +233,17 @@
             transform: scale(1.05);
         }
 
-        .doctor-info {
-            flex: 1;
-            min-width: 0;
-        }
+        .doctor-info { flex: 1; min-width: 0; }
 
         .doctor-name {
             font-weight: 700;
             font-size: 1.05rem;
             color: var(--text-dark);
             margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .doctor-name a {
@@ -285,8 +252,83 @@
             transition: var(--transition);
         }
 
-        .doctor-name a:hover {
-            color: var(--primary);
+        .doctor-name a:hover { color: var(--primary); }
+
+        /* ============ VERIFIED BADGE ============ */
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+            border-radius: 50%;
+            font-size: 11px;
+            color: #fff;
+            position: relative;
+            cursor: pointer;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(29, 161, 242, 0.3);
+        }
+
+        .verified-badge i {
+            font-size: 10px;
+        }
+
+        .verified-badge::after {
+            content: 'Verified Doctor';
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a2e;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.68rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .verified-badge::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #1a1a2e;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .verified-badge:hover::after,
+        .verified-badge:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Verified text label */
+        .verified-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--verified-blue);
+            background: #e3f2fd;
+            padding: 3px 10px;
+            border-radius: 12px;
+            border: 1px solid #bbdefb;
+        }
+
+        .verified-label i {
+            font-size: 0.65rem;
         }
 
         .doctor-tags {
@@ -294,6 +336,7 @@
             flex-wrap: wrap;
             gap: 6px;
             margin-bottom: 8px;
+            align-items: center;
         }
 
         .specialist-tag {
@@ -308,9 +351,7 @@
             color: var(--primary-dark);
         }
 
-        .specialist-tag i {
-            font-size: 0.65rem;
-        }
+        .specialist-tag i { font-size: 0.65rem; }
 
         .rating-tag {
             display: inline-flex;
@@ -324,9 +365,7 @@
             color: #f39c12;
         }
 
-        .rating-tag i {
-            font-size: 0.65rem;
-        }
+        .rating-tag i { font-size: 0.65rem; }
 
         .view-profile-btn {
             display: inline-flex;
@@ -374,13 +413,9 @@
             color: var(--text-dark);
         }
 
-        .sidebar-header i {
-            color: var(--primary);
-        }
+        .sidebar-header i { color: var(--primary); }
 
-        .sidebar-body {
-            padding: 18px;
-        }
+        .sidebar-body { padding: 18px; }
 
         .search-input-group {
             display: flex;
@@ -413,15 +448,9 @@
             transition: var(--transition);
         }
 
-        .search-input-group button:hover {
-            background: var(--primary-dark);
-        }
+        .search-input-group button:hover { background: var(--primary-dark); }
 
-        .category-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .category-list { list-style: none; padding: 0; margin: 0; }
 
         .category-item {
             display: flex;
@@ -435,11 +464,7 @@
             margin-bottom: 3px;
         }
 
-        .category-item:hover {
-            background: var(--primary-light);
-            text-decoration: none;
-            color: var(--primary);
-        }
+        .category-item:hover { background: var(--primary-light); text-decoration: none; color: var(--primary); }
 
         .category-count {
             background: var(--primary);
@@ -448,10 +473,6 @@
             border-radius: 15px;
             font-size: 0.72rem;
             font-weight: 600;
-        }
-
-        .category-item:hover .category-count {
-            background: var(--primary-dark);
         }
 
         /* ============ EMPTY STATE ============ */
@@ -463,59 +484,23 @@
             box-shadow: var(--shadow-sm);
         }
 
-        .empty-state i {
-            font-size: 4rem;
-            color: #e0e0e0;
-            margin-bottom: 15px;
-        }
-
-        .empty-state h5 {
-            color: #999;
-            font-weight: 600;
-        }
+        .empty-state i { font-size: 4rem; color: #e0e0e0; margin-bottom: 15px; }
+        .empty-state h5 { color: #999; font-weight: 600; }
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 992px) {
-            .sidebar-card {
-                position: static;
-            }
+            .sidebar-card { position: static; }
         }
 
         @media (max-width: 768px) {
-            body {
-                padding-top: 75px;
-            }
-            
-            .page-header {
-                padding: 20px 0;
-                border-radius: 0 0 20px 20px;
-            }
-            
-            .header-title h4 {
-                font-size: 1.1rem;
-            }
-            
-            .header-icon-box {
-                width: 42px;
-                height: 42px;
-                font-size: 20px;
-                border-radius: 10px;
-            }
-            
-            .doctor-card {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .doctor-tags {
-                justify-content: center;
-            }
-            
-            .doctor-avatar {
-                width: 60px;
-                height: 60px;
-            }
+            body { padding-top: 75px; }
+            .page-header { padding: 20px 0; border-radius: 0 0 20px 20px; }
+            .header-title h4 { font-size: 1.1rem; }
+            .header-icon-box { width: 42px; height: 42px; font-size: 20px; border-radius: 10px; }
+            .doctor-card { flex-direction: column; align-items: center; text-align: center; }
+            .doctor-tags { justify-content: center; }
+            .doctor-avatar { width: 60px; height: 60px; }
+            .doctor-name { justify-content: center; }
         }
     </style>
 </head>
@@ -523,13 +508,11 @@
 <body>
 
     <?php
-    // Get current user info
     $my_query = mysqli_query($conn,"SELECT * from person inner join gender on person.gender = gender.gender_id where person.nid ='$user_id'");
-    $my = mysqli_fetch_array($my_query);
+    $my = ($my_query) ? mysqli_fetch_array($my_query) : null;
     
-    // Count total doctors (excluding current user if doctor)
     $count_query = mysqli_query($conn,"SELECT COUNT(DISTINCT doctor.d_nid) as total FROM doctor WHERE doctor.d_nid != '$user_id'");
-    $count_data = mysqli_fetch_assoc($count_query);
+    $count_data = ($count_query) ? mysqli_fetch_assoc($count_query) : null;
     $total_doctors = ($count_data && isset($count_data['total'])) ? $count_data['total'] : 0;
     ?>
 
@@ -544,56 +527,31 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto align-items-center">
-                    
                     <?php if($user_type=='Doctor'): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="patient.php"><i class="fas fa-users"></i> Patients</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="patient.php"><i class="fas fa-users"></i> Patients</a></li>
                     <?php else: ?>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="doctor.php"><i class="fas fa-user-md"></i> Doctors</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" href="doctor.php"><i class="fas fa-user-md"></i> Doctors</a></li>
                     <?php endif; ?>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="hospital.php"><i class="fas fa-hospital"></i> Hospitals</a>
-                    </li>
-                    
+                    <li class="nav-item"><a class="nav-link" href="hospital.php"><i class="fas fa-hospital"></i> Hospitals</a></li>
                     <?php if($user_type == "Patient"): ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="myprescription.php"><i class="fas fa-prescription"></i> Prescriptions</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="myprescription.php"><i class="fas fa-prescription"></i> Prescriptions</a></li>
                     <?php endif; ?>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="message.php?id=0"><i class="fas fa-envelope"></i> Messages</a>
-                    </li>
-                    
-                    <!-- User Badge -->
+                    <li class="nav-item"><a class="nav-link" href="message.php?id=0"><i class="fas fa-envelope"></i> Messages</a></li>
                     <li class="nav-item ml-2">
                         <?php if($user_type=='Doctor'): ?>
                         <a class="nav-link nav-user-badge" href="doctorprofile.php?id=<?php echo $user_id; ?>">
                             <i class="fas fa-user-circle" style="font-size:16px;color:var(--primary);"></i>
-                            <div>
-                                <div class="divname"><?php echo $my['name'] ?? 'User'; ?></div>
-                                <div class="divid"><?php echo $my['nid'] ?? ''; ?></div>
-                            </div>
+                            <div><div class="divname"><?php echo $my['name'] ?? 'User'; ?></div><div class="divid"><?php echo $my['nid'] ?? ''; ?></div></div>
                         </a>
                         <?php else: ?>
                         <a class="nav-link nav-user-badge" href="myprofile.php?id=<?php echo $user_id; ?>">
                             <i class="fas fa-user-circle" style="font-size:16px;color:var(--primary);"></i>
-                            <div>
-                                <div class="divname"><?php echo $my['name'] ?? 'User'; ?></div>
-                                <div class="divid"><?php echo $my['nid'] ?? ''; ?></div>
-                            </div>
+                            <div><div class="divname"><?php echo $my['name'] ?? 'User'; ?></div><div class="divid"><?php echo $my['nid'] ?? ''; ?></div></div>
                         </a>
                         <?php endif; ?>
                     </li>
-                    
                     <li class="nav-item ml-2">
-                        <a class="nav-link btn-logout-nav" href="logout.php">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
+                        <a class="nav-link btn-logout-nav" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>
                 </ul>
             </div>
@@ -605,17 +563,15 @@
         <div class="container">
             <div class="header-content">
                 <div class="header-title">
-                    <div class="header-icon-box">
-                        <i class="fas fa-user-md"></i>
-                    </div>
+                    <div class="header-icon-box"><i class="fas fa-user-md"></i></div>
                     <div>
-                        <h4>Find Doctors</h4>
-                        <span>Browse and connect with specialists</span>
+                        <h4>Find Verified Doctors</h4>
+                        <span>All doctors are verified by IBHS</span>
                     </div>
                 </div>
                 <div class="header-badge">
                     <div class="count"><?php echo $total_doctors; ?></div>
-                    <div class="label">Available Doctors</div>
+                    <div class="label">Verified Doctors</div>
                 </div>
             </div>
         </div>
@@ -629,7 +585,6 @@
             <div class="col-lg-8">
                 
                 <?php
-                    // FIXED: Added table alias 'd' for doctor and 'dm' for dmdc to avoid ambiguous column
                     $query = mysqli_query($conn,"
                         SELECT 
                             d.d_nid AS nid, 
@@ -651,7 +606,6 @@
                 
                 <div class="doctor-grid">
                     <?php while ($doctor_row = mysqli_fetch_array($query)): 
-                        // Doctor image path: img/doctor1.jpg
                         $doctor_image = !empty($doctor_row['image']) ? $doctor_row['image'] : 'doctor1.jpg';
                     ?>
                     <div class="doctor-card animate__animated animate__fadeInUp">
@@ -660,10 +614,18 @@
                              onerror="this.src='img/doctor1.jpg'">
                         
                         <div class="doctor-info">
+                            <!-- Doctor Name with Verified Badge -->
                             <div class="doctor-name">
                                 <a href="doctorprofile.php?id=<?php echo $doctor_row['nid']; ?>">
-                                    <?php echo $doctor_row['name']; ?>
+                                    Dr. <?php echo $doctor_row['name']; ?>
                                 </a>
+                                <!-- VERIFIED BADGE - Blue Checkmark -->
+                                <span class="verified-badge" title="Verified Doctor">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                <span class="verified-label">
+                                    <i class="fas fa-shield-alt"></i> Verified
+                                </span>
                             </div>
                             
                             <div class="doctor-tags">
@@ -696,33 +658,23 @@
 
             <!-- Sidebar Column -->
             <div class="col-lg-4">
-                
-                <!-- Search Card -->
                 <div class="sidebar-card">
-                    <div class="sidebar-header">
-                        <i class="fas fa-search"></i> Search Doctors
-                    </div>
+                    <div class="sidebar-header"><i class="fas fa-search"></i> Search Doctors</div>
                     <div class="sidebar-body">
-                        <form action="searchdoc.php" method="POST">
+                        <form action="searchdoc.php" method="GET">
                             <div class="search-input-group">
                                 <input type="text" name="search" placeholder="Search by name...">
-                                <button type="submit" name="go">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                                <button type="submit" name="go"><i class="fas fa-search"></i></button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <!-- Categories Card -->
                 <div class="sidebar-card">
-                    <div class="sidebar-header">
-                        <i class="fas fa-folder"></i> Specializations
-                    </div>
+                    <div class="sidebar-header"><i class="fas fa-folder"></i> Specializations</div>
                     <div class="sidebar-body">
                         <?php
-                            // FIXED: Added table aliases to avoid ambiguous column
-                            $cat_query = mysqli_query($conn,"SELECT dm.specialist, COUNT(*) as c FROM dmdc dm INNER JOIN doctor d ON dm.dmdc_id = d.dmdc_id WHERE d.d_nid != '$user_id' GROUP BY dm.specialist");
+                            $cat_query = mysqli_query($conn,"SELECT dm.specialist, COUNT(DISTINCT d.d_nid) as c FROM dmdc dm INNER JOIN doctor d ON dm.dmdc_id = d.dmdc_id WHERE d.d_nid != '$user_id' GROUP BY dm.specialist ORDER BY dm.specialist");
                             if($cat_query && mysqli_num_rows($cat_query) > 0):
                         ?>
                         <ul class="category-list">
@@ -733,12 +685,9 @@
                             </a>
                             <?php endwhile; ?>
                         </ul>
-                        <?php else: ?>
-                        <p class="text-muted text-center" style="font-size:0.85rem;">No specializations found</p>
                         <?php endif; ?>
                     </div>
                 </div>
-                
             </div>
             
         </div>

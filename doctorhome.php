@@ -892,7 +892,7 @@
     <section class="hero-header">
         <div class="container">
             <div class="welcome-text animate__animated animate__fadeInUp">
-                <h1>Welcome back, <span class="doctor-name">Dr. <?php echo $my['name']; ?></span> 👋</h1>
+                <h1>Welcome back, <span class="doctor-name"><?php echo $my['name']; ?></span> 👋</h1>
                 <p>Manage your patients, prescriptions, and community discussions all in one place.</p>
             </div>
         </div>
