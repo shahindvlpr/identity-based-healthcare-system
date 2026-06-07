@@ -573,7 +573,8 @@ if ($open_reg_query && $open_reg_query->num_rows > 0) {
                     </div>
                 </a>
 
-                <div class="stat-card">
+                <a href="manage_appointments.php">
+                    <div class="stat-card">
                     <div class="stat-icon appointment">
                         <i class="fas fa-calendar-check"></i>
                     </div>
@@ -582,6 +583,7 @@ if ($open_reg_query && $open_reg_query->num_rows > 0) {
                         <small>Appointments</small>
                     </div>
                 </div>
+                </a>
 
                 <div class="stat-card">
                     <div class="stat-icon prescription">

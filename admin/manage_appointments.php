@@ -320,16 +320,43 @@ $today_appointments = $today_query ? $today_query->fetch_assoc()['total'] : 0;
             gap: 5px;
             flex-wrap: wrap;
         }
+        
+        /* Back button style */
+       .btn-back {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border: none;
+    color: white;
+    border-radius: 12px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(79,172,254,0.3);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back:hover {
+    background: linear-gradient(135deg, #3a8fd6, #00c4d4);
+    color: white;
+    transform: translateX(-5px);
+    box-shadow: 0 6px 20px rgba(79,172,254,0.4);
+    text-decoration: none;
+}
     </style>
 </head>
 <body>
 
 <div class="main-container">
     
-    <!-- Page Header -->
+    <!-- Page Header with Back Button -->
     <div class="page-header" data-aos="fade-down">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
             <div class="d-flex align-items-center gap-3">
+                <!-- Back Button -->
+                <a href="dashboard.php" class="btn-back">
+                    <i class="fas fa-arrow-left me-2"></i> Dashboard
+                </a>
                 <div class="header-icon">
                     <i class="fas fa-calendar-check"></i>
                 </div>
@@ -496,7 +523,7 @@ $today_appointments = $today_query ? $today_query->fetch_assoc()['total'] : 0;
                                 <td>
                                     <div class="fw-semibold">Dr. <?php echo htmlspecialchars($row['doctor_name'] ?? 'Unknown'); ?></div>
                                     <small class="text-muted"><?php echo htmlspecialchars($row['doctor_mobile'] ?? 'N/A'); ?></small>
-                                 </td>
+                                  </td>
                                 <td><?php echo htmlspecialchars($row['d_nid']); ?></td>
                                 <td>
                                     <div>
@@ -507,7 +534,7 @@ $today_appointments = $today_query ? $today_query->fetch_assoc()['total'] : 0;
                                         <i class="fas fa-clock me-1"></i>
                                         <?php echo date('h:i A', strtotime($row['date'])); ?>
                                     </small>
-                                 </td>
+                                  </td>
                                 <td>
                                     <?php if ($is_confirmed): ?>
                                         <span class="status-badge status-confirmed">
@@ -518,7 +545,7 @@ $today_appointments = $today_query ? $today_query->fetch_assoc()['total'] : 0;
                                             <i class="fas fa-clock"></i> Pending
                                         </span>
                                     <?php endif; ?>
-                                 </td>
+                                  </td>
                                 <td>
                                     <div class="action-buttons">
                                         <button class="btn-action btn btn-sm btn-outline-info" onclick="viewAppointment('<?php echo $row['p_nid']; ?>', '<?php echo $row['d_nid']; ?>')">
@@ -534,8 +561,8 @@ $today_appointments = $today_query ? $today_query->fetch_assoc()['total'] : 0;
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
-                                 </td>
-                             </tr>
+                                  </td>
+                              </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
                         <tr>
