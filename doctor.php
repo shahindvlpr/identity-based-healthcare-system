@@ -617,7 +617,7 @@
                             <!-- Doctor Name with Verified Badge -->
                             <div class="doctor-name">
                                 <a href="doctorprofile.php?id=<?php echo $doctor_row['nid']; ?>">
-                                    Dr. <?php echo $doctor_row['name']; ?>
+                                    <?php echo $doctor_row['name']; ?>
                                 </a>
                                 <!-- VERIFIED BADGE - Blue Checkmark -->
                                 <span class="verified-badge" title="Verified Doctor">
